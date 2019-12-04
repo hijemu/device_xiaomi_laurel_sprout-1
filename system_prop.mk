@@ -31,6 +31,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.dpm.feature=1 \
     persist.vendor.cne.feature=1
 
+# IMS
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.dbg.ims_volte_enable=1 \
+    persist.dbg.volte_avail_ovr=1 \
+    persist.dbg.vt_avail_ovr=1 \
+    persist.dbg.wfc_avail_ovr=1
+
+# set lmkd options
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lmk.low_ram=false \
+    ro.lmk.kill_heaviest_task=true \
+    ro.lmk.kill_timeout_ms=100 \
+    ro.lmk.use_minfree_levels=true
+
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     media.aac_51_output_enabled=true \
