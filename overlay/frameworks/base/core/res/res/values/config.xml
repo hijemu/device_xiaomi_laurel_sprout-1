@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /**
- * Copyright (c) 2009, The Android Open Source Project
+ * Copyright (c) 2019 - 2020, The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,6 @@
  * limitations under the License.
  */
 -->
-
-<!-- These resources are around just to allow their values to be customized
-     for different hardware and product builds.  Do not translate. -->
 
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds.  Do not translate. -->
@@ -92,7 +89,7 @@
     <!-- Screen brightness used to dim the screen when the user activity
          timeout expires.  May be less than the minimum allowed brightness setting
          that can be set by the user. -->
-    <integer name="config_screenBrightnessDim">1</integer>
+    <integer name="config_screenBrightnessDim">6</integer>
 	
     <!-- Screen brightness used to dim the screen while dozing in a very low power state.
          May be less than the minimum allowed brightness setting
@@ -101,7 +98,7 @@
 
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">67</integer>
+    <integer name="config_screenBrightnessSettingDefault">98</integer>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
@@ -129,11 +126,6 @@
          Note that a physical cutout should be configured in pixels for the best results.
          -->
     <string name="config_mainBuiltInDisplayCutout">M-89.6,0 C-65.1346648,0 -51.1690203,0.18 -36.9506892,31.2970381 C-29.2758076,44.1422902 -15.4572493,53 0.0018857203,53 C15.4610208,53 29.2758076,44.1422902 36.9544607,31.2970381 C51.1690203,0.18 65.1384363,0 89.6,0 L-89.6,0 Z</string>
-
-     <!-- Whether the display cutout region of the main built-in display should be forced to
-         black in software (to avoid aliasing or emulate a cutout that is not physically existent).
-     -->
-    <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
 
     <!-- Height of the status bar in portrait -->
     <dimen name="status_bar_height_portrait">35dip</dimen>
@@ -166,6 +158,17 @@
     <!-- Flag specifying whether or not IMS will use the ImsResolver dynamically -->
      <bool name="config_dynamic_bind_ims">true</bool>
 
+    <!-- Whether to enable network location overlay which allows network
+         location provider to be replaced by an app at run-time. When disabled,
+         only the config_networkLocationProviderPackageName package will be
+         searched for network location provider, otherwise packages whose
+         signature matches the signatures of config_locationProviderPackageNames
+         will be searched, and the service with the highest version number will
+         be picked. Anyone who wants to disable the overlay mechanism can set it
+         to false.
+    -->
+     <bool name="config_enableNetworkLocationOverlay">true</bool>
+
     <!-- Whether WiFi display is supported by this device.
          There are many prerequisites for this feature to work correctly.
          Here are a few of them:
@@ -178,7 +181,7 @@
          * The remote submix module "audio.r_submix.default" must be installed on the device.
          * The device must be provisioned with HDCP keys (for protected content).
     -->
-     <bool name="config_enableWifiDisplay">true</bool>
+     <bool name="config_enableWifiDisplay">false</bool>
 
     <!-- Is the device capable of hot swapping an ICC Card -->
      <bool name="config_hotswapCapable">true</bool>
@@ -194,10 +197,6 @@
     <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
          autodetected from the Configuration. -->
      <bool name="config_showNavigationBar">true</bool>
-
-    <!-- Burn in protection -->
-    <bool name="config_statusBarBurnInProtection">true</bool>
-    <integer name="config_shift_interval">60</integer>
 
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
      <bool name="config_speed_up_audio_on_mt_calls">true</bool>
@@ -501,6 +500,9 @@
          states. -->
     <bool name="config_dozeAlwaysOnDisplayAvailable">true</bool>	
 	
+     <!-- Whether the display blanks itself when transitioning from a doze to a non-doze state -->
+    <bool name="config_displayBlanksAfterDoze">true</bool>	
+	
     <!-- Control whether the always on display mode is enabled by default. This value will be used
          during initialization when the setting is still null. -->
     <bool name="config_dozeAlwaysOnEnabled">false</bool>
@@ -513,59 +515,122 @@
          available on some devices. -->
     <bool name="config_enableHapticTextHandle">true</bool>
 
-    <!-- Whether to enable network location overlay which allows network
-         location provider to be replaced by an app at run-time. When disabled,
-         only the config_networkLocationProviderPackageName package will be
-         searched for network location provider, otherwise packages whose
-         signature matches the signatures of config_locationProviderPackageNames
-         will be searched, and the service with the highest version number will
-         be picked. Anyone who wants to disable the overlay mechanism can set it
-         to false.
-         -->
-    <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>
+    <!-- Shows the required view for in-display fingerprint -->
+     <bool name="config_supportsInDisplayFingerprint">true</bool>
 
-    <!-- Package name providing network location support. Used only when
-         config_enableNetworkLocationOverlay is false. -->
-    <string name="config_networkLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
-
-    <!-- Whether to enable fused location provider overlay which allows fused
-         location provider to be replaced by an app at run-time. When disabled,
-         only the config_fusedLocationProviderPackageName package will be
-         searched for fused location provider, otherwise packages whose
-         signature matches the signatures of config_locationProviderPackageNames
-         will be searched, and the service with the highest version number will
-         be picked. Anyone who wants to disable the overlay mechanism can set it
-         to false.
-         -->
-    <bool name="config_enableFusedLocationOverlay" translatable="false">false</bool>
-
-    <!-- Package name providing fused location support. Used only when
-         config_enableFusedLocationOverlay is false. -->
-    <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
-
-    <!-- Component name of the combo network location provider. -->
-    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
-
-    <!-- If true, the display will be shifted around in ambient mode. -->
-    <bool name="config_enableBurnInProtection">true</bool>
-
-    <!-- Does the battery LED support multiple colors?
-         Used to decide if the user can change the colors -->
-    <bool name="config_multiColorBatteryLed">false</bool>
+    <!-- Component name of the default wallpaper. This will be ImageWallpaper if not
+         specified -->
+    <string name="default_wallpaper_component" translatable="false">com.breel.wallpapers19/com.breel.wallpapers19.doodle.wallpaper.variations.DoodleWallpaperV1</string>
 
     <!-- Whether to use base rounded corner radius for window animations instead
           of min between top and bottom radius-->
     <bool name="config_useDefaultRoundedCornerRadius">true</bool>
 
-    <!-- The list of vendor package signatures that should also be considered
-    platform signatures, specifically for use on devices with a vendor partition. -->
-    <string-array name="config_vendorPlatformSignatures">
-        <item>3082046c30820354a003020102020900e552a8ecb9011b7c300d06092a864886f70d0101050500308180310b300906035504061302434e3110300e060355040813074265696a696e673110300e060355040713074265696a696e67310f300d060355040a13065869616f6d69310d300b060355040b13044d495549310d300b060355040313044d495549311e301c06092a864886f70d010901160f6d697569407869616f6d692e636f6d301e170d3131313230363033323632365a170d3339303432333033323632365a308180310b300906035504061302434e3110300e060355040813074265696a696e673110300e060355040713074265696a696e67310f300d060355040a13065869616f6d69310d300b060355040b13044d495549310d300b060355040313044d495549311e301c06092a864886f70d010901160f6d697569407869616f6d692e636f6d30820120300d06092a864886f70d01010105000382010d00308201080282010100c786568a9aff253ad74c5d3e6fbffa12fed44cd3244f18960ec5511bb551e413115197234845112cc3df9bbacd3e0f4b3528cd87ed397d577dc9008e9cbc6a25fc0664d3a3f440243786db8b250d40f6f148c9a3cd6fbc2dd8d24039bd6a8972a1bdee28c308798bfa9bb3b549877b10f98e265f118c05f264537d95e29339157b9d2a31485e0c823521cca6d0b721a8432600076d669e20ac43aa588b52c11c2a51f04c6bb31ad6ae8573991afe8e4957d549591fcb83ec62d1da35b1727dc6b63001a5ef387b5a7186c1e68da1325772b5307b1bc739ef236b9efe06d52dcaf1e32768e3403e55e3ec56028cf5680cfb33971ccf7870572bc47d3e3affa385020103a381e83081e5301d0603551d0e0416041491ae2f8c72e305f92aa9f7452e2a3160b841a15c3081b50603551d230481ad3081aa801491ae2f8c72e305f92aa9f7452e2a3160b841a15ca18186a48183308180310b300906035504061302434e3110300e060355040813074265696a696e673110300e060355040713074265696a696e67310f300d060355040a13065869616f6d69310d300b060355040b13044d495549310d300b060355040313044d495549311e301c06092a864886f70d010901160f6d697569407869616f6d692e636f6d820900e552a8ecb9011b7c300c0603551d13040530030101ff300d06092a864886f70d010105050003820101003b3a699ceb497300f2ab86cbd41c513440bf60aa5c43984eb1da140ef30544d9fbbb3733df24b26f2703d7ffc645bf598a5e6023596a947e91731542f2c269d0816a69c92df9bfe8b1c9bc3c54c46c12355bb4629fe6020ca9d15f8d6155dc5586f5616db806ecea2d06bd83e32b5f13f5a04fe3e5aa514f05df3d555526c63d3d62acf00adee894b923c2698dc571bc52c756ffa7a2221d834d10cb7175c864c30872fe217c31442dff0040a67a2fb1c8ba63eac2d5ba3d8e76b4ff2a49b0db8a33ef4ae0dd0a840dd2a8714cb5531a56b786819ec9eb1051d91b23fde06bd9d0708f150c4f9efe6a416ca4a5e0c23a952af931ad3579fb4a8b19de98f64bd9</item>
-    </string-array>
+    <!-- Vibrator pattern for feedback about a long screen/key press -->
+    <integer-array name="config_longPressVibePattern">
+        <item>0</item>
+        <item>25</item>
+        <item>10</item>
+    </integer-array>
 
-    <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveNotificationLed">true</bool>
+    <!-- Vibrator pattern for feedback about touching a virtual key -->
+    <integer-array name="config_virtualKeyVibePattern">
+        <item>0</item>
+        <item>25</item>
+        <item>8</item>
+    </integer-array>
 
-    <!-- Whether device ignores the RSSNR signal implementation -->
-    <bool name="config_ignoreRssnrSignalLevel">true</bool>
+    <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
+    <integer-array name="config_keyboardTapVibePattern">
+        <item>25</item>
+    </integer-array>
+
+    <!-- The default intensity level for haptic feedback. See
+         Settings.System.HAPTIC_FEEDBACK_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultHapticFeedbackIntensity">2</integer>
+    <!-- The default intensity level for notification vibrations. See
+         Settings.System.NOTIFICATION_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultNotificationVibrationIntensity">2</integer>
+    <!-- The default intensity level for ring vibrations. See
+         Settings.System.RING_VIBRATION_INTENSITY more details on the constant values and
+         meanings. -->
+    <integer name="config_defaultRingVibrationIntensity">2</integer>
+
+    <!-- Whether the default emergency settings should be shown. -->
+    <bool name="config_showDefaultEmergency">true</bool>
+
+    <!-- Enable the RingtonePickerActivity in 'com.android.providers.media'. -->
+    <bool name="config_defaultRingtonePickerEnabled">true</bool>
+
+    <!--  Maximum number of supported users -->
+    <integer name="config_multiuserMaximumUsers">4</integer>
+
+    <!-- Default screen brightness for VR setting. Target default value: 0x0BB for EVT1.1. -->
+    <!-- 8 bit brightness level of 6 corresponds to the 10 bit brightness level of 0x0B6,
+         8 bit brightness level of 7 corresponds to the 10 bit brightness level of 0x0C1 on EVT1.1. -->
+    <integer name="config_screenBrightnessForVrSettingDefault">7</integer>
+    <integer name="config_screenBrightnessForVrSettingMinimum">6</integer>
+    <integer name="config_screenBrightnessForVrSettingMaximum">7</integer>
+
+     <!-- Burin In Protection -->
+     <!-- If true, the display will be shifted around in ambient mode. -->
+     <bool name="config_enableBurnInProtection">true</bool>
+     
+     <!-- Specifies the maximum burn-in offset displacement from the center. If -1, no maximum value
+          will be used. -->
+     <integer name="config_burnInProtectionMaxRadius">-1</integer>
+
+     <!-- Specifies the minimum burn-in offset horizontally. -->
+     <integer name="config_burnInProtectionMinHorizontalOffset">-15</integer>
+
+     <!-- Specifies the maximum burn-in offset horizontally. -->
+     <integer name="config_burnInProtectionMaxHorizontalOffset">15</integer>
+
+     <!-- Specifies the minimum burn-in offset vertically. -->
+     <integer name="config_burnInProtectionMinVerticalOffset">-40</integer>
+
+     <!-- Specifies the maximum burn-in offset vertically. -->
+     <integer name="config_burnInProtectionMaxVerticalOffset">40</integer>
+
+     <!-- True if the display hardware only has brightness buckets rather than a full range of
+          backlight values -->
+     <bool name="config_displayBrightnessBucketsInDoze">true</bool>
+
+     <!-- PORTED FROM OVERLAY PIXEL -->
+     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
+     <bool name="config_intrusiveNotificationLed">true</bool>
+	
+     <!-- Show a custom view for FOD -->
+     <bool name="config_needCustomFODView">true</bool>
+          
+     <!-- Default value for proximity check on screen wake
+          NOTE ! - Enable for devices that have a fast response proximity sensor (ideally < 300ms)
+     -->
+     <bool name="config_proximityCheckOnWake">true</bool>
+     <integer name="config_proximityCheckTimeout">100</integer>
+     <bool name="config_proximityCheckOnWakeEnabledByDefault">true</bool>
+
+     <!-- Smart charge sysfs node and value for suspend/resume charging-->
+     <string name="config_SmartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
+     <string name="config_SmartChargingSupspendValue" translatable="false">1</string>
+     <string name="config_SmartChargingResumeValue" translatable="false">0</string>
+          
+     <!-- Whether device ignores the RSSNR signal implementation -->
+     <bool name="config_ignoreRssnrSignalLevel">true</bool>
+
+     <!-- Whether device has notification LED -->
+     <bool name="config_hasNotificationLed">true</bool>
+
+     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
+     <bool name="config_intrusiveBatteryLed">true</bool>
+
+     <!-- Does the battery LED support multiple colors?
+         Used to decide if the user can change the colors -->
+     <bool name="config_multiColorBatteryLed">false</bool>
+
+     <!-- Whether notify fingerprint client of successful cancelled authentication -->
+     <bool name="config_notifyClientOnFingerprintCancelSuccess">true</bool>
+
 </resources>
