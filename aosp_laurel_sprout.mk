@@ -1,4 +1,4 @@
-# Copyright (C) 2019 LineageOS
+# Copyright (C) 2019-2020 The PixelExperience Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Mi A3
 PRODUCT_MANUFACTURER := Xiaomi
 
+# Build Fingerprint
 BUILD_FINGERPRINT := "google/coral/coral:10/QQ2A.200305.003/6156912:user/release-keys"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
