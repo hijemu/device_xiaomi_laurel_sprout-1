@@ -526,6 +526,19 @@
           of min between top and bottom radius-->
     <bool name="config_useDefaultRoundedCornerRadius">true</bool>
 
+    <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
+    <bool name="config_intrusiveNotificationLed">true</bool>
+	
+    <!-- Show a custom view for FOD -->
+    <bool name="config_needCustomFODView">true</bool>
+	
+    <!-- Whether device ignores the RSSNR signal implementation -->
+    <bool name="config_ignoreRssnrSignalLevel">true</bool>
+
+    <!-- Does the battery LED support multiple colors?
+         Used to decide if the user can change the colors -->
+    <bool name="config_multiColorBatteryLed">false</bool>
+
     <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
@@ -573,14 +586,28 @@
     <integer name="config_screenBrightnessForVrSettingDefault">7</integer>
     <integer name="config_screenBrightnessForVrSettingMinimum">6</integer>
     <integer name="config_screenBrightnessForVrSettingMaximum">7</integer>
-    
-    <!-- Specifies the minimum burn-in offset vertically. -->
-    <integer name="config_burnInProtectionMinVerticalOffset">-40</integer>
 
-    <!-- Specifies the maximum burn-in offset vertically. -->
-    <integer name="config_burnInProtectionMaxVerticalOffset">40</integer>
+     <!-- Burin In Protection -->
+     <!-- If true, the display will be shifted around in ambient mode. -->
+     <bool name="config_enableBurnInProtection">true</bool>
+     
+     <!-- Specifies the maximum burn-in offset displacement from the center. If -1, no maximum value
+          will be used. -->
+     <integer name="config_burnInProtectionMaxRadius">-1</integer>
 
-    <!-- True if the display hardware only has brightness buckets rather than a full range of
-         backlight values -->
-    <bool name="config_displayBrightnessBucketsInDoze">true</bool>
+     <!-- Specifies the minimum burn-in offset horizontally. -->
+     <integer name="config_burnInProtectionMinHorizontalOffset">-15</integer>
+
+     <!-- Specifies the maximum burn-in offset horizontally. -->
+     <integer name="config_burnInProtectionMaxHorizontalOffset">15</integer>
+
+     <!-- Specifies the minimum burn-in offset vertically. -->
+     <integer name="config_burnInProtectionMinVerticalOffset">-40</integer>
+
+     <!-- Specifies the maximum burn-in offset vertically. -->
+     <integer name="config_burnInProtectionMaxVerticalOffset">40</integer>
+
+     <!-- True if the display hardware only has brightness buckets rather than a full range of
+          backlight values -->
+     <bool name="config_displayBrightnessBucketsInDoze">true</bool>
 </resources>
