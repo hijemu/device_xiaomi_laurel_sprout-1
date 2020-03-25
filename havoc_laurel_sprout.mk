@@ -26,6 +26,8 @@ export export HAVOC_BUILD_TYPE=Official
 $(call inherit-product, vendor/havoc/config/common_full_phone.mk)
 
 TARGET_BOOT_ANIMATION_RES := 720
+TARGET_GAPPS_ARCH := arm64
+WITH_GAPPS=false
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := havoc_laurel_sprout
