@@ -19,24 +19,22 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 
-# Build Official
-export export HAVOC_BUILD_TYPE=Official
-
-# Inherit some common Havoc stuff.
-$(call inherit-product, vendor/havoc/config/common_full_phone.mk)
-
+# Inherit some common PixelExperience stuff.
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
 TARGET_BOOT_ANIMATION_RES := 720
 TARGET_GAPPS_ARCH := arm64
-WITH_GAPPS=false
+PRODUCT_SHIPPING_API_LEVEL := 28
 
+# Define Official tag
+CUSTOM_BUILD_TYPE := OFFICIAL
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := havoc_laurel_sprout
+PRODUCT_NAME := aosp_laurel_sprout
 PRODUCT_DEVICE := laurel_sprout
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := Mi A3
 PRODUCT_MANUFACTURER := Xiaomi
 
-BUILD_FINGERPRINT := "Xiaomi/laurel_sprout/laurel_sprout:10/QKQ1.190910.002/V11.0.7.0.QFQMIXM:user/release-keys"
+BUILD_FINGERPRINT := "google/coral/coral:10/QQ2A.200305.003/6156912:user/release-keys"
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="qssi-user 10 QKQ1.190910.002 V11.0.7.0.QFQMIXM release-keys" \

@@ -14,8 +14,8 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/havoc_laurel_sprout.mk
+    $(LOCAL_DIR)/aosp_laurel_sprout.mk
 
 COMMON_LUNCH_CHOICES := \
-    havoc_laurel_sprout-userdebug
+    aosp_laurel_sprout-userdebug
 

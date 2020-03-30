@@ -132,7 +132,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	use.voice.path.for.pcm.voip=true \
 	sys.qca1530=detect \
 	persist.debug.coresight.config=stm-events
-
-# Build Official
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.havoc.maintainer=Prakaship78
