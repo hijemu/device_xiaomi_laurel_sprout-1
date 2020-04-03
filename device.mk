@@ -101,10 +101,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml
 
-# ANT+
-PRODUCT_PACKAGES += \
-    AntHalService
-
 # Boot control
 PRODUCT_PACKAGES_DEBUG += \
     android.hardware.boot@1.0-impl.recovery \
