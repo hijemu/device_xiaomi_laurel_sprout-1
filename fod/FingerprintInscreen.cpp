@@ -29,6 +29,8 @@
 #define PARAM_NIT_NONE 0
 
 #define FOD_STATUS_PATH "/sys/class/touch/tp_dev/fod_status"
+#define DISPPARAM_FOD_BACKLIGHT_RESET "0x20f0000"
+#define DISPPARAM_PATH "/sys/class/drm/card0-DSI-1/disp_param"
 #define FOD_STATUS_ON 1
 #define FOD_STATUS_OFF 0
 
@@ -100,8 +102,6 @@ Return<void> FingerprintInscreen::onShowFODView() {
 
 Return<void> FingerprintInscreen::onHideFODView() {
     set(FOD_STATUS_PATH, FOD_STATUS_OFF);
-    set(DISPPARAM_PATH, DISPPARAM_FOD_BACKLIGHT_RESET);
-    xiaomiFingerprintService->extCmd(COMMAND_NIT, PARAM_NIT_NONE);
     return Void();
 }
 
