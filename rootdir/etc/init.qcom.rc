@@ -9,6 +9,9 @@ on boot
     # Smart charging
     chown system system /sys/class/power_supply/battery/input_suspend
     chmod 0666 /sys/class/power_supply/battery/input_suspend
+
+    # Override bluetooth audio hal
+    setprop persist.bluetooth.bluetooth_audio_hal.disabled true
 	
 service vendor.ss_ramdump_local /vendor/bin/subsystem_ramdump
     class late_start
