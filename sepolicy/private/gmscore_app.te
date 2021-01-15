@@ -1,0 +1,1 @@
+allow gmscore_app default_android_hwservice:hwservice_manager { find };

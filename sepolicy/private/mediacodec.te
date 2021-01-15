@@ -1,0 +1,2 @@
+allow mediacodec default_android_vndservice:service_manager { find };
+allow mediacodec default_android_hwservice:hwservice_manager { find };

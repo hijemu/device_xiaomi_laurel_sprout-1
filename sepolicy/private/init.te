@@ -19,3 +19,14 @@ allow init vendor_overlay_file:file mounton;
 allow init sysfs_battery_supply:file { setattr };
 
 permissive init;
+allow init default_android_vndservice:service_manager { find add };
+
+allow init hal_tetheroffload_hwservice:hwservice_manager { find add };
+allow init hal_gnss_hwservice:hwservice_manager { add };
+allow init hal_health_hwservice:hwservice_manager { find };
+allow init hal_neuralnetworks_hwservice:hwservice_manager { find add };
+allow init system_suspend_hwservice:hwservice_manager { find };
+allow init hal_lineage_fod_hwservice:hwservice_manager { find add };
+allow init system_net_netd_hwservice:hwservice_manager { find };
+allow init hal_telephony_hwservice:hwservice_manager { find add };
+allow init hal_secure_element_hwservice:hwservice_manager { find };

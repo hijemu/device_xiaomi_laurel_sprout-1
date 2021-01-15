@@ -2,3 +2,4 @@
 r_dir_file(untrusted_app, sysfs_battery_supply)
 r_dir_file(untrusted_app, sysfs_usb_supply)
 allow untrusted_app theme_prop:file read;
+allow untrusted_app default_android_hwservice:hwservice_manager { find };
