@@ -1,3 +1,2 @@
 # Ignore all logging requests
 dontaudit hal_fingerprint storage_file:dir search;
-allow hal_fingerprint_default default_android_hwservice:hwservice_manager { find add };
